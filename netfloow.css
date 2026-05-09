@@ -309,44 +309,73 @@ h3.pageTitleWithDefaultLogo::before {
   height: 3px !important;
 }
 
-/* Slider position */
-.nowPlayingBarPositionContainer .playbackProgress {
+/* --- Slider MDL (Material Design Lite) utilisé par Jellyfin --- */
+
+/* Partie jouée — rouge (toutes variantes de nommage Jellyfin/MDL) */
+.sliderPlayProgress,
+.mdl-slider__background-lower,
+.nowPlayingBarPositionContainer .playbackProgress,
+[class*="PlayProgress"],
+[class*="playProgress"] {
   background: rgb(var(--nf-primary)) !important;
 }
 
-/* Reset couleur native bleue du navigateur */
-.osdPositionSlider {
+/* Partie bufferisée — gris */
+.sliderBufferedProgress,
+.mdl-slider__background-upper {
+  background: rgba(var(--nf-text), 0.25) !important;
+}
+
+/* Reset couleur bleue native du navigateur sur l'input range */
+.osdPositionSlider,
+.mdl-slider {
   -webkit-appearance: none !important;
   appearance: none !important;
   background: transparent !important;
+  color: rgb(var(--nf-primary)) !important;
 }
 
-/* Piste complète — gris sombre (partie non lue) */
-.osdPositionSlider::-webkit-slider-runnable-track {
+/* Piste (partie non lue) */
+.osdPositionSlider::-webkit-slider-runnable-track,
+.mdl-slider::-webkit-slider-runnable-track {
   background: rgba(var(--nf-text), 0.2) !important;
   height: 4px;
   border-radius: 2px;
 }
 
-/* Thumb (rond rouge sur la position actuelle) */
-.osdPositionSlider::-webkit-slider-thumb {
+/* Thumb (le rond) */
+.osdPositionSlider::-webkit-slider-thumb,
+.mdl-slider::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   appearance: none !important;
   background: rgb(var(--nf-primary)) !important;
+  border: 2px solid rgb(var(--nf-primary)) !important;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   margin-top: -5px;
 }
 
-/* Partie jouée — rouge (div Jellyfin overlay) */
-.sliderPlayProgress {
+/* Firefox */
+.osdPositionSlider::-moz-range-thumb,
+.mdl-slider::-moz-range-thumb {
+  background: rgb(var(--nf-primary)) !important;
+  border: none !important;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.osdPositionSlider::-moz-range-progress,
+.mdl-slider::-moz-range-progress {
   background: rgb(var(--nf-primary)) !important;
 }
 
-/* Partie bufferisée — blanc discret */
-.sliderBufferedProgress {
-  background: rgba(var(--nf-text), 0.35) !important;
+.osdPositionSlider::-moz-range-track,
+.mdl-slider::-moz-range-track {
+  background: rgba(var(--nf-text), 0.2) !important;
+  height: 4px;
+  border-radius: 2px;
 }
 
 /* === 9. BUTTONS & ACTIONS === */
@@ -604,3 +633,81 @@ h3.pageTitleWithDefaultLogo::before {
     max-width: 8em;
   }
 }
+
+/* === 16. ACCENT ROUGE GLOBAL === */
+/* Uniformise toutes les couleurs d'accentuation en rouge */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--nf-bg-card));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--nf-primary), 0.6);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--nf-primary));
+}
+
+/* Sélection de texte */
+::selection {
+  background: rgba(var(--nf-primary), 0.4);
+  color: #fff;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid rgb(var(--nf-primary)) !important;
+  outline-offset: 2px;
+}
+
+/* Checkboxes et toggles */
+.emby-checkbox:checked,
+input[type="checkbox"]:checked {
+  accent-color: rgb(var(--nf-primary));
+}
+
+/* Liens */
+a {
+  color: rgba(var(--nf-primary), 0.85);
+  transition: color var(--nf-transition);
+}
+
+a:hover {
+  color: rgb(var(--nf-primary));
+}
+
+/* Étoiles / rating actif */
+.starIcon.starIcon-full,
+.starRating .material-icons {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Titre de page actif / section active */
+.pageTitle,
+.sectionTitle-withUrl:hover {
+  color: rgb(var(--nf-text)) !important;
+}
+
+/* Badges et labels */
+.videoQualityLabel,
+.mediaInfoItem {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Spinner de chargement */
+.mdl-spinner__layer {
+  border-color: rgb(var(--nf-primary)) !important;
+}
+
+.mdl-spinner__layer-1 { border-color: rgb(var(--nf-primary)) !important; }
+.mdl-spinner__layer-2 { border-color: rgb(var(--nf-primary)) !important; }
+.mdl-spinner__layer-3 { border-color: rgb(var(--nf-primary)) !important; }
+.mdl-spinner__layer-4 { border-color: rgb(var(--nf-primary)) !important; }
