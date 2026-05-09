@@ -1,0 +1,82 @@
+/* ================================================
+   NetFloow Addon — Login page custom
+   doc: Background Image on Login Page
+   https://jellyfin.org/docs/general/clients/css-customization#background-image-on-login-page
+   ================================================ */
+
+/* Page de connexion — fond sombre avec pseudo-background */
+#loginPage {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(var(--nf-primary), 0.05) 0%,
+      transparent 50%
+    ),
+    rgb(var(--nf-bg)) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Conteneur formulaire */
+#loginPage .readOnlyContent,
+#loginPage .content-primary {
+  max-width: 22em;
+  width: 100%;
+  background: rgba(var(--nf-bg-card), 0.95);
+  padding: 2.5rem 2rem;
+  border-radius: var(--nf-rounding);
+  border: 1px solid rgba(var(--nf-primary), 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Logo NetFloow — remplace le titre serveur */
+#loginPage h1 {
+  font-family: var(--nf-font-logo);
+  font-size: 3.2rem;
+  letter-spacing: var(--nf-logo-letter-spacing);
+  color: rgb(var(--nf-primary));
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0.2em;
+  text-shadow: 0 2px 10px rgba(var(--nf-primary), 0.4);
+}
+
+/* Tagline sous le logo */
+#loginPage h1::after {
+  content: var(--nf-tagline);
+  display: block;
+  font-family: var(--nf-font-primary);
+  font-size: 0.55rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: rgba(var(--nf-text-muted), 0.8);
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 0.3em;
+}
+
+/* Masquer logo Jellyfin natif */
+#loginPage .headerLogoImage,
+#loginPage .readOnlyContent img {
+  display: none !important;
+}
+
+/* Disclaimer / lien aide */
+#loginPage .loginDisclaimer {
+  color: rgba(var(--nf-text-muted), 0.6);
+  font-size: 0.78rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#loginPage .loginDisclaimer a {
+  color: rgba(var(--nf-primary), 0.8);
+  text-decoration: none;
+}
+
+#loginPage .loginDisclaimer a:hover {
+  color: rgb(var(--nf-primary));
+  text-decoration: underline;
+}

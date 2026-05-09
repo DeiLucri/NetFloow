@@ -1,0 +1,73 @@
+/* ================================================
+   NetFloow Addon — Media Bar overrides
+   Compatible: Media Bar plugin (IAmParadox)
+   ================================================ */
+
+/* Conteneur principal Media Bar */
+.mediaInfoItem,
+.mediaBarContent,
+[class*="mediaBarContent"] {
+  color: rgb(var(--nf-text)) !important;
+  font-family: var(--nf-font-primary) !important;
+}
+
+/* Titre hero */
+.mediaBarTitle,
+[class*="mediaBarTitle"] {
+  font-family: var(--nf-font-primary) !important;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  color: rgb(var(--nf-text)) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  line-height: 1.1;
+}
+
+/* Description hero */
+.mediaBarDescription,
+[class*="mediaBarDescription"],
+[class*="mediaBarOverview"] {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: rgba(var(--nf-text), 0.9) !important;
+  max-width: 50ch;
+  line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Boutons hero */
+.mediaBarButton,
+[class*="mediaBarButton"],
+[class*="mediaBarPlayButton"] {
+  background: rgb(var(--nf-primary)) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--nf-rounding) !important;
+  font-weight: 600 !important;
+  padding: 0.7em 1.8em !important;
+  transition: background var(--nf-transition) !important;
+}
+
+.mediaBarButton:hover,
+[class*="mediaBarPlayButton"]:hover {
+  background: rgb(var(--nf-primary-dark)) !important;
+}
+
+/* Indicateurs / metadata hero */
+.mediaBarGenre,
+.mediaBarYear,
+.mediaBarRating,
+[class*="mediaBarMeta"] {
+  color: rgba(var(--nf-text-muted), 1) !important;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* Overlay dégradé bas de hero */
+.mediaBarGradient,
+[class*="mediaBarGradient"] {
+  background: linear-gradient(
+    to top,
+    rgb(var(--nf-bg)) 0%,
+    rgba(var(--nf-bg), 0.6) 40%,
+    transparent 100%
+  ) !important;
+}
