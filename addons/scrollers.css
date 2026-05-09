@@ -1,0 +1,52 @@
+/* ================================================
+   NetFloow Addon — Scrollers horizontaux
+   Compatible: Home Screen Sections (IAmParadox)
+   ================================================ */
+
+/* Scroll fluide et masquage de la scrollbar */
+.homePage .emby-scroller,
+.emby-scroller {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+
+.homePage .emby-scroller::-webkit-scrollbar,
+.emby-scroller::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
+/* Items en ligne horizontale */
+.homePage .itemsContainer,
+.itemsContainer {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+/* Boutons de navigation scroll */
+.emby-scrollbuttons {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.emby-scroller:hover .emby-scrollbuttons {
+  opacity: 1;
+}
+
+.emby-scrollbuttons_left,
+.emby-scrollbuttons_right {
+  background: rgba(var(--nf-bg), 0.85) !important;
+  border: 1px solid rgba(var(--nf-primary), 0.3);
+  color: rgb(var(--nf-text)) !important;
+  transition: background 0.2s;
+}
+
+.emby-scrollbuttons_left:hover,
+.emby-scrollbuttons_right:hover {
+  background: rgba(var(--nf-primary), 0.8) !important;
+}

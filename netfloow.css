@@ -1,0 +1,522 @@
+/* ================================================
+   NetFloow — Netflix-style theme for Jellyfin
+   Version : 1.0.0
+   Repo    : https://github.com/DeiLucri/NetFloow
+   Doc CSS : https://jellyfin.org/docs/general/clients/css-customization
+   ================================================ */
+
+/* === 1. FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* === 2. VARIABLES ROOT — CONFIGURATION NETFLOOW === */
+/* ================================================
+   CONFIGURATION NETFLOOW — modifier uniquement ici
+   ================================================ */
+:root {
+  /* --- Couleurs — format RGB pour rgba(var(--nf-X), opacité) --- */
+  --nf-primary:        229, 9, 20;      /* #E50914 rouge principal */
+  --nf-primary-dark:   178, 7, 16;      /* #B20710 rouge foncé hover */
+  --nf-bg:             10, 10, 10;      /* #0A0A0A background principal */
+  --nf-bg-card:        20, 20, 20;      /* #141414 background cartes */
+  --nf-bg-elevated:    28, 28, 28;      /* #1C1C1C éléments surélevés */
+  --nf-text:           255, 255, 255;   /* #FFFFFF texte principal */
+  --nf-text-muted:     160, 160, 160;   /* #A0A0A0 texte secondaire */
+  --nf-text-dim:       96, 96, 96;      /* #606060 texte discret */
+  --nf-match:          70, 211, 105;    /* #46D369 vert correspondance */
+
+  /* --- Branding --- */
+  --nf-server-name:        "NetFloow";
+  --nf-tagline:            "Votre cinéma privé";
+  --nf-logo-size:          1.8rem;
+  --nf-logo-letter-spacing: 3px;
+
+  /* --- Typographie --- */
+  --nf-font-primary: 'Outfit', sans-serif;
+  --nf-font-logo:    'Bebas Neue', sans-serif;
+  --nf-font-size-base: 16px;
+
+  /* --- Effets visuels --- */
+  --nf-backdrop-blur:  blur(20px);
+  --nf-rounding:       0.4em;
+  --nf-card-radius:    5px;
+  --nf-transition:     0.3s;
+  --nf-hover-scale:    1.05;
+  --nf-hover-shadow:   0 8px 40px rgba(0, 0, 0, 0.8);
+
+  /* --- Layout --- */
+  --nf-hero-height:         85vh;
+  --nf-hero-overlay:        0.6;
+  --nf-sidebar-width:       240px;
+  --nf-sidebar-collapsed:   72px;
+
+  /* --- Feature flags (0 = désactivé, 1 = activé) --- */
+  --nf-blur:              1;  /* effets de flou */
+  --nf-animations:        1;  /* animations et transitions */
+  --nf-grain:             0;  /* effet grain cinéma */
+  --nf-card-titles:       1;  /* titres toujours visibles sur cartes */
+  --nf-sidebar-collapse:  1;  /* sidebar auto-rétractable */
+}
+
+/* === 3. GLOBAL RESET === */
+/* doc: Custom Background Color */
+
+html,
+.backgroundContainer,
+.dialog {
+  background-color: rgb(var(--nf-bg)) !important;
+  color: rgb(var(--nf-text));
+  font-family: var(--nf-font-primary);
+  font-size: var(--nf-font-size-base);
+}
+
+* {
+  font-family: var(--nf-font-primary);
+  box-sizing: border-box;
+}
+
+/* Barre de progression rouge globale */
+.playbackProgress,
+.itemProgressBarForeground {
+  background: rgb(var(--nf-primary)) !important;
+}
+
+/* === 4. HEADER & LOGO — doc: Transparent Top Menu === */
+/* doc: https://jellyfin.org/docs/general/clients/css-customization#transparent-top-menu */
+
+/* Header transparent avec blur */
+.skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred,
+.skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.noHomeButtonHeader {
+  background: rgba(var(--nf-bg), 0.85) !important;
+  backdrop-filter: var(--nf-backdrop-blur);
+  -webkit-backdrop-filter: var(--nf-backdrop-blur);
+  border-bottom: 1px solid rgba(var(--nf-primary), 0.2);
+}
+
+/* Full Header Tweak — doc: Full Header Tweak */
+.skinHeader,
+.mainDrawer,
+.emby-input,
+.emby-textarea,
+.emby-select,
+.navMenuOption-selected,
+.cardBox,
+.paperList {
+  background-color: rgb(var(--nf-bg)) !important;
+}
+
+/* Remplacement logo Jellyfin par "NetFloow" */
+.headerLogo,
+.headerLogoImage {
+  display: none !important;
+}
+
+.skinHeader .headerLeft::before {
+  content: var(--nf-server-name);
+  font-family: var(--nf-font-logo);
+  font-size: var(--nf-logo-size);
+  letter-spacing: var(--nf-logo-letter-spacing);
+  color: rgb(var(--nf-primary));
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 1rem;
+}
+
+/* Icônes header — doc: Hide/show header buttons */
+.headerRight {
+  color: rgb(var(--nf-text)) !important;
+}
+
+/* Tab buttons — doc: Enlarge Tab Buttons */
+.headerTabs.sectionTabs {
+  font-size: 110%;
+}
+
+.emby-tab-button {
+  padding: 1em 1.4em;
+  color: rgba(var(--nf-text-muted), 1);
+  transition: color var(--nf-transition), border-bottom var(--nf-transition);
+  border-bottom: 2px solid transparent;
+}
+
+.emby-tab-button.emby-tab-button-active,
+.emby-tab-button:hover {
+  color: rgb(var(--nf-primary));
+  border-bottom: 2px solid rgb(var(--nf-primary));
+}
+
+.pageTitle {
+  font-family: var(--nf-font-primary);
+  font-weight: 600;
+  color: rgb(var(--nf-text));
+}
+
+/* === 5. SIDEBAR — doc: Console Panel Custom Color === */
+/* doc: https://jellyfin.org/docs/general/clients/css-customization#console-panel-custom-color */
+
+.mainDrawer-scrollContainer {
+  background-color: rgb(var(--nf-bg)) !important;
+  border-right: 1px solid rgba(var(--nf-primary), 0.1);
+}
+
+/* Option sélectionnée */
+.navMenuOption-selected {
+  background: rgba(var(--nf-primary), 0.15) !important;
+  border-left: 3px solid rgb(var(--nf-primary)) !important;
+}
+
+.navMenuOption {
+  color: rgba(var(--nf-text-muted), 1);
+  transition: background var(--nf-transition), color var(--nf-transition);
+}
+
+.navMenuOption:hover {
+  background: rgba(var(--nf-primary), 0.08) !important;
+  color: rgb(var(--nf-text)) !important;
+}
+
+/* === 6. CARDS & GRID — doc: Image Edge Rounded === */
+/* doc: https://jellyfin.org/docs/general/clients/css-customization#image-edge-rounded */
+
+/* Arrondi cartes */
+.cardContent-button,
+.itemDetailImage {
+  border-radius: var(--nf-card-radius) !important;
+  overflow: hidden;
+}
+
+.cardBox {
+  background: rgb(var(--nf-bg-card)) !important;
+  border-radius: var(--nf-card-radius);
+  transition: transform var(--nf-transition), box-shadow var(--nf-transition);
+}
+
+.cardBox:hover {
+  transform: scale(var(--nf-hover-scale));
+  box-shadow: var(--nf-hover-shadow);
+  z-index: 10;
+  position: relative;
+}
+
+/* Overlay au survol */
+.cardOverlayContainer {
+  background: linear-gradient(
+    to top,
+    rgba(var(--nf-bg), 0.9) 0%,
+    rgba(var(--nf-bg), 0.4) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--nf-transition);
+}
+
+.cardBox:hover .cardOverlayContainer {
+  opacity: 1;
+}
+
+.cardText {
+  color: rgb(var(--nf-text)) !important;
+}
+
+/* Indicateur vu — doc: Played Indicator */
+.playedIndicator {
+  background: rgb(var(--nf-match)) !important;
+  color: #000 !important;
+}
+
+/* Indicateur count — doc: Transparent count indicators */
+.countIndicator {
+  background: rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Barre de progression sur cartes */
+.itemProgressBarForeground {
+  background: rgb(var(--nf-primary)) !important;
+}
+
+/* === 7. HERO / MEDIA BAR === */
+/* Compatible plugin: Media Bar (IAmParadox) */
+
+/* Backdrop assombri */
+.backdropImage {
+  filter: brightness(0.55) !important;
+}
+
+/* Background homepage — doc: Background Image on Homepage */
+.backgroundContainer {
+  background-color: rgb(var(--nf-bg)) !important;
+}
+
+/* Zone Media Bar plugin */
+.mediaBarContainer,
+.mediaBar-container,
+[class*="mediaBar"] {
+  min-height: var(--nf-hero-height);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Overlay dégradé hero */
+.mediaBarContent,
+[class*="mediaBarContent"] {
+  background:
+    linear-gradient(to right,
+      rgba(var(--nf-bg), 0.95) 30%,
+      rgba(var(--nf-bg), var(--nf-hero-overlay)) 60%,
+      transparent 100%
+    ),
+    linear-gradient(to top,
+      rgba(var(--nf-bg), 1) 0%,
+      transparent 30%
+    );
+}
+
+/* === 8. PLAYER & PROGRESS BAR === */
+/* doc: Floating Now Playing Controls */
+
+.nowPlayingBar {
+  background: rgba(var(--nf-bg), 0.95) !important;
+  backdrop-filter: var(--nf-backdrop-blur);
+  border-top: 1px solid rgba(var(--nf-primary), 0.3);
+}
+
+.nowPlayingBarTop {
+  height: 3px !important;
+}
+
+/* Slider position */
+.nowPlayingBarPositionContainer .playbackProgress {
+  background: rgb(var(--nf-primary)) !important;
+}
+
+/* Thumb slider */
+.osdPositionSlider::-webkit-slider-thumb {
+  background: rgb(var(--nf-primary)) !important;
+}
+
+.osdPositionSlider::-webkit-slider-runnable-track {
+  background: rgba(var(--nf-primary), 0.35) !important;
+}
+
+/* === 9. BUTTONS & ACTIONS === */
+
+/* Bouton play principal */
+.raised.emby-button,
+.emby-button.raised.button-submit {
+  background: rgb(var(--nf-primary)) !important;
+  color: #fff !important;
+  border-radius: var(--nf-rounding) !important;
+  transition: background var(--nf-transition) !important;
+  border: none !important;
+}
+
+.raised.emby-button:hover,
+.emby-button.raised.button-submit:hover {
+  background: rgb(var(--nf-primary-dark)) !important;
+}
+
+/* Inputs — doc: Custom Border Color */
+.emby-input,
+.emby-textarea,
+.emby-select {
+  border-color: rgba(var(--nf-text-muted), 0.3) !important;
+  background: rgb(var(--nf-bg-elevated)) !important;
+  color: rgb(var(--nf-text)) !important;
+  border-radius: var(--nf-rounding) !important;
+}
+
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select-withcolor {
+  border-color: rgb(var(--nf-primary)) !important;
+  outline: none !important;
+}
+
+/* === 10. HOME SECTIONS OVERRIDES === */
+/* Compatible plugins: Home Screen Sections (IAmParadox), KefinTweaks, Jellyfin Enhanced */
+
+/* Titres de section */
+.sectionTitle,
+.sectionTitle-cards {
+  font-family: var(--nf-font-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: rgb(var(--nf-text));
+  letter-spacing: 0.5px;
+}
+
+/* Scroller horizontal — doc: Shift Scroller */
+.homePage .emby-scroller {
+  margin-right: 0 !important;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+/* Boutons scroll cartes */
+.emby-scrollbuttons {
+  display: flex !important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: rgba(var(--nf-bg), 0.7);
+  border-radius: 50%;
+}
+
+/* Items container */
+.itemsContainer {
+  flex-wrap: nowrap !important;
+}
+
+/* List view */
+.paperList {
+  background: rgb(var(--nf-bg-elevated)) !important;
+  border-radius: var(--nf-rounding) !important;
+}
+
+/* === 11. LOGIN PAGE — doc: Minimalistic Login Page === */
+/* doc: https://jellyfin.org/docs/general/clients/css-customization#background-image-on-login-page */
+
+#loginPage {
+  background: rgb(var(--nf-bg)) !important;
+}
+
+#loginPage .readOnlyContent,
+#loginPage .content-primary {
+  max-width: 22em;
+  margin: 0 auto;
+  background: rgba(var(--nf-bg-card), 0.9);
+  padding: 2rem;
+  border-radius: var(--nf-rounding);
+  border: 1px solid rgba(var(--nf-primary), 0.2);
+}
+
+/* Logo NetFloow sur la page de connexion */
+#loginPage h1 {
+  font-family: var(--nf-font-logo);
+  font-size: 3rem;
+  letter-spacing: var(--nf-logo-letter-spacing);
+  color: rgb(var(--nf-primary));
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#loginPage .headerLogoImage {
+  display: none !important;
+}
+
+#loginPage .loginDisclaimer {
+  color: rgba(var(--nf-text-muted), 0.7);
+  font-size: 0.8rem;
+}
+
+/* === 12. EPISODE PREVIEWS — doc: Stylized Episode Previews === */
+/* doc: https://jellyfin.org/docs/general/clients/css-customization#stylized-episode-previews */
+
+.listItemImage.listItemImage-large.itemAction.lazy {
+  height: 110px !important;
+  border-radius: var(--nf-card-radius) !important;
+  overflow: hidden;
+}
+
+.listItem-content {
+  height: 115px !important;
+  background: rgba(var(--nf-bg-card), 0.6);
+  transition: background var(--nf-transition);
+}
+
+.listItem-content:hover {
+  background: rgba(var(--nf-bg-elevated), 0.9);
+}
+
+.secondary.listItem-overview.listItemBodyText {
+  color: rgb(var(--nf-text-muted)) !important;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* === 13. CAST & CREW — doc: Stylized Cast & Crew === */
+/* doc: https://jellyfin.org/docs/general/clients/css-customization#stylized-cast-crew */
+
+#castContent .card.overflowPortraitCard.personCard {
+  width: 4.2cm !important;
+}
+
+#castContent .personCard {
+  width: auto !important;
+}
+
+#castContent .cardScalable {
+  width: 3.8cm !important;
+  height: 3.8cm !important;
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+.itemDetailPage .cardText {
+  text-align: left !important;
+  color: rgb(var(--nf-text)) !important;
+}
+
+#castCollapsible .sectionTitle {
+  color: rgb(var(--nf-text-muted));
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* === 14. RESPONSIVE MOBILE === */
+
+@media screen and (max-width: 768px) {
+  /* Liens externes mobiles — doc: Mobile Layout */
+  .layout-mobile .itemExternalLinks {
+    display: block !important;
+  }
+
+  /* Logo plus compact */
+  .skinHeader .headerLeft::before {
+    font-size: 1.4rem;
+    padding-left: 0.5rem;
+  }
+
+  /* Cartes en grille wrap */
+  .itemsContainer {
+    flex-wrap: wrap !important;
+  }
+
+  /* Sidebar rétractée */
+  .mainDrawer {
+    width: var(--nf-sidebar-collapsed) !important;
+  }
+
+  .mainDrawer-scrollContainer .navMenuOption span {
+    display: none;
+  }
+}
+
+/* === 15. RESPONSIVE TV === */
+/* Note: CSS custom partiel uniquement sur Android TV */
+
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+
+  .cardBox:hover {
+    transform: scale(1.08);
+  }
+
+  .emby-tab-button {
+    padding: 1.2em 2em;
+    font-size: 1.1rem;
+  }
+
+  /* Canaux Live TV — doc */
+  .guideChannelNumber {
+    display: none;
+  }
+
+  .channelsContainer {
+    max-width: 8em;
+  }
+}

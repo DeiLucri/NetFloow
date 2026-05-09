@@ -1,0 +1,11 @@
+/* ================================================
+   NetFloow Blue — variante couleur bleue
+   Import après netfloow.css
+   ================================================ */
+@import url('../netfloow.css');
+
+/* Override couleur principale en bleu */
+:root {
+  --nf-primary:       0, 112, 243;   /* #0070F3 bleu principal */
+  --nf-primary-dark:  0, 86, 189;    /* #0056BD bleu foncé hover */
+}

@@ -1,0 +1,12 @@
+/* ================================================
+   NetFloow OLED — variante fond noir pur
+   Import après netfloow.css
+   ================================================ */
+@import url('../netfloow.css');
+
+/* Override fond noir pur pour écrans OLED */
+:root {
+  --nf-bg:          0, 0, 0;    /* #000000 noir pur */
+  --nf-bg-card:     10, 10, 10; /* #0A0A0A cards */
+  --nf-bg-elevated: 18, 18, 18; /* #121212 elevated */
+}
