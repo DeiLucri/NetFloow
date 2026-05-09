@@ -314,19 +314,39 @@ h3.pageTitleWithDefaultLogo::before {
   background: rgb(var(--nf-primary)) !important;
 }
 
-/* Thumb (rond rouge sur la position actuelle) */
-.osdPositionSlider::-webkit-slider-thumb {
-  background: rgb(var(--nf-primary)) !important;
+/* Reset couleur native bleue du navigateur */
+.osdPositionSlider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
 }
 
 /* Piste complète — gris sombre (partie non lue) */
 .osdPositionSlider::-webkit-slider-runnable-track {
   background: rgba(var(--nf-text), 0.2) !important;
+  height: 4px;
+  border-radius: 2px;
 }
 
-/* Piste buffered — blanc légèrement visible */
-.osdPositionSlider::-webkit-slider-runnable-track::-webkit-progress-value {
-  background: rgba(var(--nf-text), 0.4) !important;
+/* Thumb (rond rouge sur la position actuelle) */
+.osdPositionSlider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: rgb(var(--nf-primary)) !important;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-top: -5px;
+}
+
+/* Partie jouée — rouge (div Jellyfin overlay) */
+.sliderPlayProgress {
+  background: rgb(var(--nf-primary)) !important;
+}
+
+/* Partie bufferisée — blanc discret */
+.sliderBufferedProgress {
+  background: rgba(var(--nf-text), 0.35) !important;
 }
 
 /* === 9. BUTTONS & ACTIONS === */
