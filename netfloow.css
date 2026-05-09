@@ -314,13 +314,19 @@ h3.pageTitleWithDefaultLogo::before {
   background: rgb(var(--nf-primary)) !important;
 }
 
-/* Thumb slider */
+/* Thumb (rond rouge sur la position actuelle) */
 .osdPositionSlider::-webkit-slider-thumb {
   background: rgb(var(--nf-primary)) !important;
 }
 
+/* Piste complète — gris sombre (partie non lue) */
 .osdPositionSlider::-webkit-slider-runnable-track {
-  background: rgba(var(--nf-primary), 0.35) !important;
+  background: rgba(var(--nf-text), 0.2) !important;
+}
+
+/* Piste buffered — blanc légèrement visible */
+.osdPositionSlider::-webkit-slider-runnable-track::-webkit-progress-value {
+  background: rgba(var(--nf-text), 0.4) !important;
 }
 
 /* === 9. BUTTONS & ACTIONS === */
