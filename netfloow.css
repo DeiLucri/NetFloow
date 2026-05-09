@@ -357,6 +357,39 @@ h3.pageTitleWithDefaultLogo::before {
   outline: none !important;
 }
 
+/* Menu contextuel (clic sur carte) — actionSheet */
+.actionSheet {
+  background: rgb(var(--nf-bg-elevated)) !important;
+  border: 1px solid rgba(var(--nf-primary), 0.2);
+  border-radius: var(--nf-rounding) !important;
+}
+
+.actionSheetContent .listItem,
+.actionSheet .listItem {
+  color: rgb(var(--nf-text)) !important;
+  transition: background var(--nf-transition), color var(--nf-transition);
+  border-radius: var(--nf-rounding);
+}
+
+.actionSheetContent .listItem:hover,
+.actionSheet .listItem:hover {
+  background: rgba(var(--nf-primary), 0.15) !important;
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Icône + texte passent en rouge au survol */
+.actionSheetContent .listItem:hover .listItemIcon,
+.actionSheetContent .listItem:hover .material-icons,
+.actionSheet .listItem:hover .listItemIcon,
+.actionSheet .listItem:hover .material-icons {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Séparateur entre groupes */
+.actionSheetDivider {
+  border-color: rgba(var(--nf-primary), 0.15) !important;
+}
+
 /* === 10. HOME SECTIONS OVERRIDES === */
 /* Compatible plugins: Home Screen Sections (IAmParadox), KefinTweaks, Jellyfin Enhanced */
 
