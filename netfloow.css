@@ -104,31 +104,56 @@ html,
   background-color: rgb(var(--nf-bg)) !important;
 }
 
-/* Remplacement logo Jellyfin par "NetFloow" */
-.headerLogo,
-.headerLogoImage,
-.headerLogoLink,
-.headerLeft img,
-.headerLeft svg,
-.headerLeft a {
-  display: none !important;
+/* Logo NetFloow — injecté en ::before sur .skinHeader (flex item)
+   Positionnement : NETFLOOW [1] → hamburger [2] → reste [3+]
+   Le hamburger (≡) est sibling de .headerLeft, pas child */
+.skinHeader {
+  display: flex !important;
+  align-items: center;
+  flex-direction: row;
 }
 
-.skinHeader .headerLeft::before {
+.skinHeader::before {
   content: var(--nf-server-name);
   font-family: var(--nf-font-logo);
   font-size: var(--nf-logo-size);
   letter-spacing: var(--nf-logo-letter-spacing);
   color: rgb(var(--nf-primary));
   text-transform: uppercase;
-  display: inline-block;
-  vertical-align: middle;
   padding-left: 1rem;
+  padding-right: 0.5rem;
+  flex-shrink: 0;
+  order: 1;
 }
 
-/* Icônes header — doc: Hide/show header buttons */
+/* Hamburger à droite du logo */
+.headerSidebarToggleButton {
+  order: 2 !important;
+}
+
+/* headerLeft (contient la zone logo Jellyfin) */
+.headerLeft {
+  order: 3;
+}
+
+/* headerRight (icônes) poussé à l'extrême droite */
 .headerRight {
+  order: 10 !important;
+  margin-left: auto;
   color: rgb(var(--nf-text)) !important;
+}
+
+/* Masquer le logo Jellyfin — toutes les variantes connues */
+.headerLogo,
+.headerLogoImage,
+.headerLogoLink,
+.headerLeft img,
+.headerLeft svg,
+.headerLeft a,
+img[src*="jellyfin"],
+img[src*="Jellyfin"] {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 /* Tab buttons — doc: Enlarge Tab Buttons */
