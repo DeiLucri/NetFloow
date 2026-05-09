@@ -242,15 +242,16 @@ h3.pageTitleWithDefaultLogo::before {
   color: rgb(var(--nf-text)) !important;
 }
 
-/* Indicateur vu — doc: Played Indicator */
+/* Indicateur vu (série terminée) — doc: Played Indicator */
 .playedIndicator {
-  background: rgb(var(--nf-match)) !important;
-  color: #000 !important;
+  background: rgb(var(--nf-primary)) !important;
+  color: #fff !important;
 }
 
-/* Indicateur count — doc: Transparent count indicators */
+/* Bulle count (nouveaux épisodes) — doc: Transparent count indicators */
 .countIndicator {
-  background: rgba(0, 0, 0, 0.55) !important;
+  background: rgb(var(--nf-primary)) !important;
+  color: #fff !important;
 }
 
 /* Barre de progression sur cartes */
