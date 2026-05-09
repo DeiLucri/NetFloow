@@ -106,7 +106,11 @@ html,
 
 /* Remplacement logo Jellyfin par "NetFloow" */
 .headerLogo,
-.headerLogoImage {
+.headerLogoImage,
+.headerLogoLink,
+.headerLeft img,
+.headerLeft svg,
+.headerLeft a {
   display: none !important;
 }
 
