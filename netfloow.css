@@ -399,13 +399,13 @@ h3.pageTitleWithDefaultLogo::before {
   background-color: transparent !important;
 }
 
-/* Boutons overlay (play, info…) — rond sombre */
+/* Boutons overlay (play, info…) — rond, contour gris */
 .paper-icon-button-light.cardOverlayButton {
   background: rgba(var(--nf-bg-card), 0.92) !important;
   border-radius: 50% !important;
-  border: 2px solid rgba(var(--nf-text), 0.15) !important;
+  border: 2px solid rgba(var(--nf-text-muted), 0.5) !important;
   color: rgb(var(--nf-text)) !important;
-  transition: background var(--nf-transition), border-color var(--nf-transition), color var(--nf-transition), transform var(--nf-transition) !important;
+  transition: border-color var(--nf-transition), transform var(--nf-transition) !important;
 }
 
 /* Icône transparente (pas de double fond) */
@@ -413,11 +413,10 @@ h3.pageTitleWithDefaultLogo::before {
   background-color: transparent !important;
 }
 
-/* Hover sur bouton overlay → agrandissement uniquement */
+/* Hover → contour rouge, agrandissement */
 .paper-icon-button-light.cardOverlayButton:hover {
-  background: rgba(var(--nf-bg-card), 0.92) !important;
-  border-color: rgba(var(--nf-text), 0.4) !important;
-  transform: scale(1.25);
+  border-color: rgb(var(--nf-primary)) !important;
+  transform: scale(1.15);
 }
 
 /* Bouton "Reprendre" → bordure rouge d'emblée */
