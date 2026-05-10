@@ -414,14 +414,22 @@ h3.pageTitleWithDefaultLogo::before {
   transition: border-color 0.2s ease, transform 0.2s ease !important;
 }
 
-/* Taille réduite — uniquement cartes médias (exclut personCard/castCard) */
-.card:not(.personCard) .cardOverlayContainer .paper-icon-button-light.cardOverlayButton {
-  width: 36px !important;
-  height: 36px !important;
-  font-size: 0.9rem !important;
+/* Taille réduite — via .cardOverlayButton-br (wrapper des ✓ ♥ ⋮)
+   excluant #castContent pour ne pas toucher les cartes d'acteurs */
+:not(#castContent) .cardOverlayButton-br .paper-icon-button-light {
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 0.85rem !important;
   padding: 0 !important;
-  min-width: unset !important;
-  min-height: unset !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Play button — taille explicite pour éviter qu'il réduise aussi */
+.cardOverlayFab .paper-icon-button-light {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 0 !important;
 }
 
 .cardOverlayButtonIcon {
