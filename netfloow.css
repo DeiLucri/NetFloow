@@ -794,14 +794,14 @@ h3.pageTitleWithDefaultLogo::before {
   opacity: 0 !important;
 }
 
-/* Visible uniquement quand la page détail est active
-   Jellyfin cache les pages inactives avec .hide — :has() cible l'état actif */
-body:has(#itemDetailPage:not(.hide)) .backdropImage {
+/* Visible uniquement quand la page détail est active ET l'accueil caché
+   Double condition pour éviter le flash backdrop pendant la transition */
+body:has(#itemDetailPage:not(.hide)):has(#indexPage.hide) .backdropImage {
   opacity: 0.35 !important;
   filter: blur(2px) !important;
 }
 
-body:has(#itemDetailPage:not(.hide)) .backgroundContainer.withBackdrop {
+body:has(#itemDetailPage:not(.hide)):has(#indexPage.hide) .backgroundContainer.withBackdrop {
   background-color: rgba(var(--nf-bg), 0.55) !important;
 }
 
