@@ -134,6 +134,24 @@ h3.pageTitleWithDefaultLogo::before {
   content: var(--nf-server-name) !important;
 }
 
+/* Pages catégorie/film : Jellyfin utilise .pageTitle au lieu de h3
+   On cache le nom de la page (font-size:0) et on injecte le logo via ::before */
+.skinHeader .pageTitle {
+  font-size: 0 !important;
+  order: 1 !important;
+  flex-shrink: 0;
+  padding: 0 0.5rem !important;
+}
+
+.skinHeader .pageTitle::before {
+  content: var(--nf-server-name) !important;
+  font-family: var(--nf-font-logo) !important;
+  font-size: var(--nf-logo-size) !important;
+  letter-spacing: var(--nf-logo-letter-spacing) !important;
+  color: rgb(var(--nf-primary)) !important;
+  text-transform: uppercase;
+}
+
 /* Flèche retour (←) — order 0 pour être avant le logo */
 .headerBackButton {
   order: 0 !important;
