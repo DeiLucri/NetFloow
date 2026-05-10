@@ -399,16 +399,20 @@ h3.pageTitleWithDefaultLogo::before {
   background-color: transparent !important;
 }
 
-/* Boutons overlay (play, info…) — rond, contour gris, taille réduite */
+/* Boutons overlay (play, info…) — rond, contour gris */
 .paper-icon-button-light.cardOverlayButton {
   background: rgba(var(--nf-bg-card), 0.92) !important;
   border-radius: 50% !important;
   border: 2px solid rgba(var(--nf-text-muted), 0.5) !important;
   color: rgb(var(--nf-text)) !important;
   transition: border-color var(--nf-transition), transform var(--nf-transition) !important;
-  width: 28px !important;
-  height: 28px !important;
-  font-size: 0.85rem !important;
+}
+
+/* Taille réduite uniquement sur les boutons bas-droite (✓ ♥ ⋮) */
+.cardOverlayButton-br.paper-icon-button-light.cardOverlayButton {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 0.9rem !important;
   padding: 0 !important;
 }
 
