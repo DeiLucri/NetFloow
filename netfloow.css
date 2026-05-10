@@ -789,16 +789,13 @@ h3.pageTitleWithDefaultLogo::before {
    .backgroundContainer.withBackdrop   ← couche entre backdrop et contenu
    Jellyfin cache les pages inactives avec .hide — on scope via :has() */
 
-/* Backdrop masqué partout par défaut
-   animation:none coupe le @keyframes backdropImageFadeIn de Jellyfin
-   qui avait priorité sur opacity:0 !important */
+/* Backdrop masqué partout par défaut (protège l'accueil) */
 .backdropImage {
   opacity: 0 !important;
-  animation: none !important;
-  transition: none !important;
 }
 
-/* Visible uniquement sur la page détail (accueil masqué) */
+/* Visible uniquement quand la page détail est active ET l'accueil caché
+   Double condition pour éviter le flash backdrop pendant la transition */
 body:has(#itemDetailPage:not(.hide)):has(#indexPage.hide) .backdropImage {
   opacity: 0.35 !important;
   filter: blur(2px) !important;
