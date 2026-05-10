@@ -787,16 +787,22 @@ h3.pageTitleWithDefaultLogo::before {
 /* DOM réel Jellyfin 10.11.x (inspecté DevTools) :
    .backdropContainer > .backdropImage  ← image backdrop (inline style background-image)
    .backgroundContainer.withBackdrop   ← couche entre backdrop et contenu
-   Notre reset global peint .backgroundContainer en noir opaque → cache le backdrop.
-   Fix : rendre .backgroundContainer semi-transparent quand withBackdrop est présent */
-.backgroundContainer.withBackdrop {
-  background-color: rgba(var(--nf-bg), 0.55) !important;
+   Jellyfin cache les pages inactives avec .hide — on scope via :has() */
+
+/* Backdrop masqué partout par défaut (protège l'accueil) */
+.backdropImage {
+  opacity: 0 !important;
 }
 
-/* Image backdrop — opacité augmentée (Jellyfin la met très basse par défaut) */
-.backdropImage {
+/* Visible uniquement quand la page détail est active
+   Jellyfin cache les pages inactives avec .hide — :has() cible l'état actif */
+body:has(#itemDetailPage:not(.hide)) .backdropImage {
   opacity: 0.35 !important;
   filter: blur(2px) !important;
+}
+
+body:has(#itemDetailPage:not(.hide)) .backgroundContainer.withBackdrop {
+  background-color: rgba(var(--nf-bg), 0.55) !important;
 }
 
 /* Boutons d'action page détail (▶ ⬛ ✓ ♥ ⋮) */
