@@ -392,6 +392,53 @@ h3.pageTitleWithDefaultLogo::before {
   color: #fff !important;
 }
 
+/* Bouton play sur carte — inspiré JellyFlix */
+
+/* Fond transparent sur le bouton FAB principal */
+.cardOverlayFab-primary {
+  background-color: transparent !important;
+}
+
+/* Boutons overlay (play, info…) — rond sombre */
+.paper-icon-button-light.cardOverlayButton {
+  background: rgba(var(--nf-bg-card), 0.92) !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(var(--nf-text), 0.15) !important;
+  color: rgb(var(--nf-text)) !important;
+  transition: background var(--nf-transition), border-color var(--nf-transition), color var(--nf-transition), transform var(--nf-transition) !important;
+}
+
+/* Icône transparente (pas de double fond) */
+.cardOverlayButtonIcon {
+  background-color: transparent !important;
+}
+
+/* Hover sur bouton overlay → rouge */
+.paper-icon-button-light.cardOverlayButton:hover {
+  background: rgb(var(--nf-primary)) !important;
+  border-color: rgb(var(--nf-primary)) !important;
+  color: #fff !important;
+  transform: scale(1.1);
+}
+
+/* Bouton "Reprendre" → bordure rouge d'emblée */
+.cardOverlayButton[data-action="resume"] {
+  border-color: rgb(var(--nf-primary)) !important;
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Marge du bouton bas-droite */
+.cardOverlayButton-br {
+  margin-right: 2%;
+}
+
+/* Mobile — bordure rouge visible */
+.layout-mobile .cardOverlayButton {
+  color: #fff !important;
+  border: 2px solid rgb(var(--nf-primary)) !important;
+  margin: 0 2% 2% 0;
+}
+
 /* Barre de progression sur cartes */
 .itemProgressBarForeground {
   background: rgb(var(--nf-primary)) !important;
