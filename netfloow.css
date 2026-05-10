@@ -685,11 +685,6 @@ h3.pageTitleWithDefaultLogo::before {
   border-radius: 50%;
 }
 
-/* Items container */
-.itemsContainer {
-  flex-wrap: nowrap !important;
-}
-
 /* List view */
 .paperList {
   background: rgb(var(--nf-bg-elevated)) !important;

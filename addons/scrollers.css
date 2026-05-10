@@ -3,9 +3,8 @@
    Compatible: Home Screen Sections (IAmParadox)
    ================================================ */
 
-/* Scroll fluide et masquage de la scrollbar */
-.homePage .emby-scroller,
-.emby-scroller {
+/* Scroll fluide et masquage de la scrollbar — HOME uniquement */
+.homePage .emby-scroller {
   overflow-x: auto !important;
   overflow-y: hidden !important;
   scroll-behavior: smooth;
@@ -14,18 +13,24 @@
   -ms-overflow-style: none;    /* IE/Edge */
 }
 
-.homePage .emby-scroller::-webkit-scrollbar,
-.emby-scroller::-webkit-scrollbar {
+.homePage .emby-scroller::-webkit-scrollbar {
   display: none;               /* Chrome/Safari */
 }
 
-/* Items en ligne horizontale */
-.homePage .itemsContainer,
-.itemsContainer {
+/* Items en ligne horizontale — HOME uniquement */
+.homePage .emby-scroller .itemsContainer {
   display: flex !important;
   flex-wrap: nowrap !important;
   gap: 0.5rem;
   padding: 0.25rem 0;
+}
+
+/* Grille normale pour la médiathèque et les autres pages */
+.libraryPage .itemsContainer,
+.itemDetailPage .itemsContainer {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem;
 }
 
 /* Boutons de navigation scroll */
