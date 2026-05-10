@@ -359,29 +359,32 @@ h3.pageTitleWithDefaultLogo::before {
   opacity: 1;
 }
 
-/* --- Panneau infos Netflix — apparaît sous l'image au hover --- */
+/* --- Panneau infos Netflix sous l'image ---
+   contain:layout sur .cardBox bloque max-height → on utilise
+   scaleY(0→1) sur le contenu + padding fixe sur .cardFooter     */
+
 .cardFooter {
-  background: transparent;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease, background 0.25s ease, padding 0.25s ease;
-  padding: 0;
-  border-radius: 0 0 var(--nf-card-radius) var(--nf-card-radius);
+  background: rgb(var(--nf-bg-elevated)) !important;
+  border-radius: 0 0 var(--nf-card-radius) var(--nf-card-radius) !important;
+  padding: 0.4rem 0.5rem 0.5rem !important;
+  overflow: hidden !important;
+  transform-origin: top center;
+  transform: scaleY(0) !important;
+  transition: transform 0.2s ease !important;
+  height: auto !important;
 }
 
 .card:hover .cardFooter,
 .card:focus .cardFooter {
-  background: rgb(var(--nf-bg-elevated));
-  max-height: 80px;
-  padding: 0.4rem 0.5rem 0.5rem;
+  transform: scaleY(1) !important;
 }
 
-/* Texte masqué → visible dans le panneau */
+/* Texte dans le panneau */
 .cardText {
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease 0.05s;
   color: rgb(var(--nf-text)) !important;
-  font-size: 0.75rem;
+  font-size: 0.75rem !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
