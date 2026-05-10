@@ -784,30 +784,19 @@ h3.pageTitleWithDefaultLogo::before {
 
 /* === 14. PAGE DÉTAIL === */
 
-/* Le reset global peint .backgroundContainer en noir uni — on le perce
-   sur la page détail pour laisser le backdrop de Jellyfin remonter */
-.itemDetailPage .backgroundContainer {
-  background-color: transparent !important;
+/* DOM réel Jellyfin 10.11.x (inspecté DevTools) :
+   .backdropContainer > .backdropImage  ← image backdrop (inline style background-image)
+   .backgroundContainer.withBackdrop   ← couche entre backdrop et contenu
+   Notre reset global peint .backgroundContainer en noir opaque → cache le backdrop.
+   Fix : rendre .backgroundContainer semi-transparent quand withBackdrop est présent */
+.backgroundContainer.withBackdrop {
+  background-color: rgba(var(--nf-bg), 0.55) !important;
 }
 
-/* Backdrop semi-transparent : Jellyfin le cache par défaut (opacity ~0) */
-.itemDetailPage .itemBackdrop {
-  opacity: 0.18 !important;
-  filter: blur(3px) !important;
-  transform: scale(1.04) !important; /* compense le halo de blur sur les bords */
-}
-
-/* Gradient vignette pour garder le texte lisible */
-.itemDetailPage .itemBackdrop::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgb(var(--nf-bg)) 25%,
-    rgba(var(--nf-bg), 0.5) 65%,
-    rgba(var(--nf-bg), 0.1) 100%
-  );
+/* Image backdrop — opacité augmentée (Jellyfin la met très basse par défaut) */
+.backdropImage {
+  opacity: 0.35 !important;
+  filter: blur(2px) !important;
 }
 
 /* Boutons d'action page détail (▶ ⬛ ✓ ♥ ⋮) */
