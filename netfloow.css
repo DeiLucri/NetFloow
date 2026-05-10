@@ -782,7 +782,39 @@ h3.pageTitleWithDefaultLogo::before {
   letter-spacing: 1px;
 }
 
-/* === 14. RESPONSIVE MOBILE === */
+/* === 14. PAGE DÉTAIL === */
+
+/* Backdrop semi-transparent — affiche/backdrop visible en fond */
+.itemBackdrop {
+  opacity: 0.2 !important;
+  filter: blur(4px) !important;
+  transform: scale(1.05) !important; /* évite les bords blancs dus au blur */
+}
+
+/* Gradient vignette pour garder le texte lisible */
+.itemDetailPage .backgroundContainer {
+  background: linear-gradient(
+    to right,
+    rgb(var(--nf-bg)) 0%,
+    rgba(var(--nf-bg), 0.6) 50%,
+    rgba(var(--nf-bg), 0.3) 100%
+  ) !important;
+}
+
+/* Boutons d'action page détail (▶ ⬛ ✓ ♥ ⋮) */
+.itemDetailPage .paper-icon-button-light {
+  color: rgb(var(--nf-text-muted)) !important;
+  border-radius: 50% !important;
+  transition: color var(--nf-transition), background var(--nf-transition) !important;
+}
+
+.itemDetailPage .paper-icon-button-light:hover {
+  color: rgb(var(--nf-primary)) !important;
+  background: rgba(var(--nf-primary), 0.12) !important;
+}
+
+/* === 15. RESPONSIVE MOBILE === */
+
 
 @media screen and (max-width: 768px) {
   /* Liens externes mobiles — doc: Mobile Layout */
@@ -811,7 +843,7 @@ h3.pageTitleWithDefaultLogo::before {
   }
 }
 
-/* === 15. RESPONSIVE TV === */
+/* === 16. RESPONSIVE TV === */
 /* Note: CSS custom partiel uniquement sur Android TV */
 
 @media screen and (min-width: 1920px) {
@@ -838,7 +870,7 @@ h3.pageTitleWithDefaultLogo::before {
   }
 }
 
-/* === 16. ACCENT ROUGE GLOBAL === */
+/* === 17. ACCENT ROUGE GLOBAL === */
 /* Uniformise toutes les couleurs d'accentuation en rouge */
 
 /* Scrollbar */
