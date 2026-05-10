@@ -806,13 +806,29 @@ body:has(#itemDetailPage:not(.hide)):has(#indexPage.hide) .backgroundContainer.w
 }
 
 /* Boutons d'action page détail (▶ ⬛ ✓ ♥ ⋮) */
-.itemDetailPage .paper-icon-button-light {
+.itemDetailPage .paper-icon-button-light,
+.itemDetailPage .detailButton,
+.itemDetailPage .btnPlay,
+.itemDetailPage .btnShuffle,
+.itemDetailPage .btnMarkPlayed,
+.itemDetailPage .btnFavorite,
+.itemDetailPage .btnMoreCommands,
+.itemDetailPage .btnDownload,
+.itemDetailPage .btnQueue {
   color: rgb(var(--nf-text-muted)) !important;
   border-radius: 50% !important;
   transition: color var(--nf-transition), background var(--nf-transition) !important;
 }
 
-.itemDetailPage .paper-icon-button-light:hover {
+.itemDetailPage .paper-icon-button-light:hover,
+.itemDetailPage .detailButton:hover,
+.itemDetailPage .btnPlay:hover,
+.itemDetailPage .btnShuffle:hover,
+.itemDetailPage .btnMarkPlayed:hover,
+.itemDetailPage .btnFavorite:hover,
+.itemDetailPage .btnMoreCommands:hover,
+.itemDetailPage .btnDownload:hover,
+.itemDetailPage .btnQueue:hover {
   color: rgb(var(--nf-primary)) !important;
   background: rgba(var(--nf-primary), 0.12) !important;
 }
