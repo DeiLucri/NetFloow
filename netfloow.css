@@ -134,9 +134,20 @@ h3.pageTitleWithDefaultLogo::before {
   content: var(--nf-server-name) !important;
 }
 
-/* Hamburger (≡) — à droite du logo */
+/* Hamburger (≡) — à droite du logo, blanc par défaut → rouge au survol */
 .mainDrawerButton {
   order: 2 !important;
+  color: rgb(var(--nf-text)) !important;
+}
+
+.mainDrawerButton:hover {
+  color: rgb(var(--nf-primary)) !important;
+  background: rgba(var(--nf-primary), 0.1) !important;
+  border-radius: 50%;
+}
+
+.mainDrawerButton .mdl-ripple {
+  background: rgba(var(--nf-primary), 0.2) !important;
 }
 
 /* Bouton Home — masqué (optionnel, doc: Hide/show header buttons) */
