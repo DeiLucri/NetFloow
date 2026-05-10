@@ -306,44 +306,35 @@ h3.pageTitleWithDefaultLogo::before {
 
 /* === 6. CARDS & GRID — doc: Image Edge Rounded === */
 /* doc: https://jellyfin.org/docs/general/clients/css-customization#image-edge-rounded */
-/* Inspiré de JellyFlix (prayag17) pour les effets hover */
 
-/* Base carte — transition fluide + z-index géré */
+/* --- Base carte --- */
 .card {
   border-radius: var(--nf-card-radius);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, z-index 0s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   z-index: 1;
+  position: relative;
 }
 
+/* Zoom + ombre au survol */
 .card:hover,
 .card:focus {
-  transform: scale(1.15) !important;
-  box-shadow: var(--nf-hover-shadow) !important;
+  transform: scale(1.3) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9) !important;
   z-index: 100;
   filter: none !important;
 }
 
-/* Désactivé sur mobile et TV (évite les décalages) */
-.layout-mobile .card:hover {
-  transform: none !important;
-  box-shadow: none !important;
+/* Image : arrondi haut seulement au zoom */
+.card:hover .cardScalable,
+.card:focus .cardScalable {
+  border-radius: var(--nf-card-radius) var(--nf-card-radius) 0 0 !important;
 }
 
-.layout-tv .card:focus {
-  transform: none !important;
-}
-
-/* Arrondi cartes — doc: Image Edge Rounded */
+/* Arrondi de base */
 .cardContent-button,
 .itemDetailImage {
   border-radius: var(--nf-card-radius) !important;
   overflow: hidden;
-}
-
-/* Supprime l'arrondi au zoom pour un effet plus dramatique */
-.card:hover .cardScalable,
-.card:focus .cardScalable {
-  border-radius: 0 !important;
 }
 
 .cardBox {
@@ -351,24 +342,12 @@ h3.pageTitleWithDefaultLogo::before {
   border-radius: var(--nf-card-radius);
 }
 
-/* Texte de carte — masqué par défaut, apparaît au survol */
-.cardText {
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  color: rgb(var(--nf-text)) !important;
-}
-
-.card:hover .cardText,
-.card:focus .cardText {
-  opacity: 1;
-}
-
-/* Overlay dégradé au survol */
+/* --- Overlay dégradé bas --- */
 .cardOverlayContainer {
   background: linear-gradient(
     to top,
-    rgba(var(--nf-bg), 0.92) 0%,
-    rgba(var(--nf-bg), 0.5) 50%,
+    rgba(var(--nf-bg), 0.95) 0%,
+    rgba(var(--nf-bg), 0.6) 40%,
     transparent 100%
   );
   opacity: 0;
@@ -380,57 +359,90 @@ h3.pageTitleWithDefaultLogo::before {
   opacity: 1;
 }
 
-/* Indicateur vu (série terminée) — doc: Played Indicator */
+/* --- Panneau infos Netflix — apparaît sous l'image au hover --- */
+.cardFooter {
+  background: transparent;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease, background 0.25s ease, padding 0.25s ease;
+  padding: 0;
+  border-radius: 0 0 var(--nf-card-radius) var(--nf-card-radius);
+}
+
+.card:hover .cardFooter,
+.card:focus .cardFooter {
+  background: rgb(var(--nf-bg-elevated));
+  max-height: 80px;
+  padding: 0.4rem 0.5rem 0.5rem;
+}
+
+/* Texte masqué → visible dans le panneau */
+.cardText {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  color: rgb(var(--nf-text)) !important;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card:hover .cardText,
+.card:focus .cardText {
+  opacity: 1;
+}
+
+/* --- Bouton play — rond blanc avec play noir (style Netflix) --- */
+.cardOverlayFab-primary {
+  background-color: transparent !important;
+}
+
+.cardOverlayFab {
+  transition: transform 0.2s ease;
+}
+
+.cardOverlayFab:hover {
+  transform: scale(1.1);
+}
+
+/* --- Boutons action (✓ ♥ ⋮) — contour gris → rouge au hover --- */
+.paper-icon-button-light.cardOverlayButton {
+  background: rgba(var(--nf-bg-elevated), 0.9) !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(var(--nf-text-muted), 0.5) !important;
+  color: rgb(var(--nf-text)) !important;
+  transition: border-color 0.2s ease, transform 0.2s ease !important;
+}
+
+.cardOverlayButtonIcon {
+  background-color: transparent !important;
+}
+
+.paper-icon-button-light.cardOverlayButton:hover {
+  border-color: rgb(var(--nf-primary)) !important;
+  color: rgb(var(--nf-primary)) !important;
+  transform: scale(1.1);
+}
+
+/* Mobile */
+.layout-mobile .card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.layout-tv .card:focus {
+  transform: none !important;
+}
+
+/* --- Indicateurs --- */
 .playedIndicator {
   background: rgb(var(--nf-primary)) !important;
   color: #fff !important;
 }
 
-/* Bulle count (nouveaux épisodes) — doc: Transparent count indicators */
 .countIndicator {
   background: rgb(var(--nf-primary)) !important;
   color: #fff !important;
-}
-
-/* Bouton play sur carte — inspiré JellyFlix */
-
-/* Fond transparent sur le bouton FAB principal */
-.cardOverlayFab-primary {
-  background-color: transparent !important;
-}
-
-/* Boutons overlay (play, info…) — rond, contour gris */
-.paper-icon-button-light.cardOverlayButton {
-  background: rgba(var(--nf-bg-card), 0.92) !important;
-  border-radius: 50% !important;
-  border: 2px solid rgba(var(--nf-text-muted), 0.5) !important;
-  color: rgb(var(--nf-text)) !important;
-  transition: border-color var(--nf-transition), transform var(--nf-transition) !important;
-}
-
-
-/* Icône transparente (pas de double fond) */
-.cardOverlayButtonIcon {
-  background-color: transparent !important;
-}
-
-/* Hover → contour rouge, agrandissement */
-.paper-icon-button-light.cardOverlayButton:hover {
-  border-color: rgb(var(--nf-primary)) !important;
-  transform: scale(1.15);
-}
-
-
-/* Marge du bouton bas-droite */
-.cardOverlayButton-br {
-  margin-right: 2%;
-}
-
-/* Mobile — bordure rouge visible */
-.layout-mobile .cardOverlayButton {
-  color: #fff !important;
-  border: 2px solid rgb(var(--nf-primary)) !important;
-  margin: 0 2% 2% 0;
 }
 
 /* Barre de progression sur cartes */
