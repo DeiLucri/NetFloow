@@ -408,13 +408,6 @@ h3.pageTitleWithDefaultLogo::before {
   transition: border-color var(--nf-transition), transform var(--nf-transition) !important;
 }
 
-/* Taille réduite uniquement sur les boutons bas-droite (✓ ♥ ⋮) */
-.cardOverlayButton-br.paper-icon-button-light.cardOverlayButton {
-  width: 34px !important;
-  height: 34px !important;
-  font-size: 0.9rem !important;
-  padding: 0 !important;
-}
 
 /* Icône transparente (pas de double fond) */
 .cardOverlayButtonIcon {
