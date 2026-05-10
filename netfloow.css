@@ -151,19 +151,19 @@ h3.pageTitleWithDefaultLogo::before {
   color: rgb(var(--nf-text)) !important;
 }
 
-/* Icônes header — reset couleur bleue Jellyfin (.paper-icon-button-light) */
+/* Icônes header — rouge par défaut */
 .headerRight .paper-icon-button-light,
 .headerRight .headerButton,
 .headerRight button,
 .headerRight .material-icons,
 .paper-icon-button-light.headerButton {
-  color: rgb(var(--nf-text)) !important;
+  color: rgb(var(--nf-primary)) !important;
 }
 
 .headerRight .paper-icon-button-light:hover,
 .headerRight .headerButton:hover,
 .headerRight button:hover {
-  color: rgb(var(--nf-primary)) !important;
+  color: rgb(var(--nf-primary-dark)) !important;
 }
 
 /* Tab buttons — doc: Enlarge Tab Buttons */
