@@ -111,7 +111,7 @@ html,
      ├── h3.pageTitleWithDefaultLogo    logo Jellyfin (h3 vide + background-image)
      └── div.headerRight                icônes droite
 
-   Ordre voulu : [NETFLOOW h3] [≡ hamburger] [...] [headerRight] */
+   Ordre voulu : [← retour] [NETFLOOW h3] [≡ hamburger] [...] [headerRight] */
 
 /* Réutilisation de la h3 logo comme logo NetFloow */
 h3.pageTitleWithLogo,
@@ -134,7 +134,23 @@ h3.pageTitleWithDefaultLogo::before {
   content: var(--nf-server-name) !important;
 }
 
-/* Hamburger (≡) — à droite du logo, blanc par défaut → rouge au survol */
+/* Flèche retour (←) — order 0 pour être avant le logo */
+.headerBackButton {
+  order: 0 !important;
+  color: rgb(var(--nf-text)) !important;
+}
+
+.headerBackButton:hover {
+  color: rgb(var(--nf-primary)) !important;
+  background: rgba(var(--nf-primary), 0.1) !important;
+  border-radius: 50%;
+}
+
+.headerBackButton .mdl-ripple {
+  background: rgba(var(--nf-primary), 0.2) !important;
+}
+
+/* Hamburger (≡) — order 2 pour être après le logo */
 .mainDrawerButton {
   order: 2 !important;
   color: rgb(var(--nf-text)) !important;
