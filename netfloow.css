@@ -306,45 +306,78 @@ h3.pageTitleWithDefaultLogo::before {
 
 /* === 6. CARDS & GRID — doc: Image Edge Rounded === */
 /* doc: https://jellyfin.org/docs/general/clients/css-customization#image-edge-rounded */
+/* Inspiré de JellyFlix (prayag17) pour les effets hover */
 
-/* Arrondi cartes */
+/* Base carte — transition fluide + z-index géré */
+.card {
+  border-radius: var(--nf-card-radius);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, z-index 0s;
+  z-index: 1;
+}
+
+.card:hover,
+.card:focus {
+  transform: scale(1.15) !important;
+  box-shadow: var(--nf-hover-shadow) !important;
+  z-index: 100;
+  filter: none !important;
+}
+
+/* Désactivé sur mobile et TV (évite les décalages) */
+.layout-mobile .card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.layout-tv .card:focus {
+  transform: none !important;
+}
+
+/* Arrondi cartes — doc: Image Edge Rounded */
 .cardContent-button,
 .itemDetailImage {
   border-radius: var(--nf-card-radius) !important;
   overflow: hidden;
 }
 
+/* Supprime l'arrondi au zoom pour un effet plus dramatique */
+.card:hover .cardScalable,
+.card:focus .cardScalable {
+  border-radius: 0 !important;
+}
+
 .cardBox {
   background: rgb(var(--nf-bg-card)) !important;
   border-radius: var(--nf-card-radius);
-  transition: transform var(--nf-transition), box-shadow var(--nf-transition);
 }
 
-.cardBox:hover {
-  transform: scale(var(--nf-hover-scale));
-  box-shadow: var(--nf-hover-shadow);
-  z-index: 10;
-  position: relative;
-}
-
-/* Overlay au survol */
-.cardOverlayContainer {
-  background: linear-gradient(
-    to top,
-    rgba(var(--nf-bg), 0.9) 0%,
-    rgba(var(--nf-bg), 0.4) 50%,
-    transparent 100%
-  );
+/* Texte de carte — masqué par défaut, apparaît au survol */
+.cardText {
   opacity: 0;
-  transition: opacity var(--nf-transition);
+  transition: opacity 0.2s ease;
+  color: rgb(var(--nf-text)) !important;
 }
 
-.cardBox:hover .cardOverlayContainer {
+.card:hover .cardText,
+.card:focus .cardText {
   opacity: 1;
 }
 
-.cardText {
-  color: rgb(var(--nf-text)) !important;
+/* Overlay dégradé au survol */
+.cardOverlayContainer {
+  background: linear-gradient(
+    to top,
+    rgba(var(--nf-bg), 0.92) 0%,
+    rgba(var(--nf-bg), 0.5) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .cardOverlayContainer,
+.card:focus .cardOverlayContainer {
+  opacity: 1;
 }
 
 /* Indicateur vu (série terminée) — doc: Played Indicator */
