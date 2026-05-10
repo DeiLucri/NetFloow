@@ -151,19 +151,32 @@ h3.pageTitleWithDefaultLogo::before {
   color: rgb(var(--nf-text)) !important;
 }
 
-/* Icônes header — rouge par défaut */
+/* Icônes header — blanches par défaut, rouges au survol */
 .headerRight .paper-icon-button-light,
 .headerRight .headerButton,
 .headerRight button,
 .headerRight .material-icons,
 .paper-icon-button-light.headerButton {
-  color: rgb(var(--nf-primary)) !important;
+  color: rgb(var(--nf-text)) !important;
 }
 
 .headerRight .paper-icon-button-light:hover,
 .headerRight .headerButton:hover,
+.headerRight button:hover,
+.headerRight .paper-icon-button-light:hover .material-icons {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Suppression du cercle bleu MDL ripple */
+.headerRight .paper-icon-button-light .mdl-ripple,
+.headerRight button .mdl-ripple {
+  background: rgba(var(--nf-primary), 0.2) !important;
+}
+
+.headerRight .paper-icon-button-light:hover,
 .headerRight button:hover {
-  color: rgb(var(--nf-primary-dark)) !important;
+  background: rgba(var(--nf-primary), 0.1) !important;
+  border-radius: 50%;
 }
 
 /* Tab buttons — doc: Enlarge Tab Buttons */
