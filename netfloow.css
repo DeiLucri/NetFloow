@@ -144,11 +144,26 @@ h3.pageTitleWithDefaultLogo::before {
   display: none !important;
 }
 
-/* headerRight — extrême droite */
+/* headerRight + icônes — extrême droite */
 .headerRight {
   order: 10 !important;
   margin-left: auto !important;
   color: rgb(var(--nf-text)) !important;
+}
+
+/* Icônes header — reset couleur bleue Jellyfin (.paper-icon-button-light) */
+.headerRight .paper-icon-button-light,
+.headerRight .headerButton,
+.headerRight button,
+.headerRight .material-icons,
+.paper-icon-button-light.headerButton {
+  color: rgb(var(--nf-text)) !important;
+}
+
+.headerRight .paper-icon-button-light:hover,
+.headerRight .headerButton:hover,
+.headerRight button:hover {
+  color: rgb(var(--nf-primary)) !important;
 }
 
 /* Tab buttons — doc: Enlarge Tab Buttons */
@@ -178,25 +193,91 @@ h3.pageTitleWithDefaultLogo::before {
 /* === 5. SIDEBAR — doc: Console Panel Custom Color === */
 /* doc: https://jellyfin.org/docs/general/clients/css-customization#console-panel-custom-color */
 
-.mainDrawer-scrollContainer {
-  background-color: rgb(var(--nf-bg)) !important;
-  border-right: 1px solid rgba(var(--nf-primary), 0.1);
+/* Conteneur principal du drawer */
+.mainDrawer {
+  background: rgb(var(--nf-bg)) !important;
+  border-right: 1px solid rgba(var(--nf-primary), 0.12) !important;
 }
 
-/* Option sélectionnée */
+.mainDrawer-scrollContainer {
+  background: rgb(var(--nf-bg)) !important;
+  padding: 0.5rem 0;
+}
+
+/* Headers de section (Média, Administration, etc.) */
+.mainDrawer-scrollContainer .sectionTitle,
+.mainDrawer-scrollContainer .navSection,
+.mainDrawer-scrollContainer h3,
+.mainDrawer-scrollContainer .sidebarHeader,
+.navMenuOption-header,
+[class*="navSection"] {
+  color: rgb(var(--nf-primary)) !important;
+  font-family: var(--nf-font-primary) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  padding: 1.2rem 1.2rem 0.3rem !important;
+  margin: 0 !important;
+  opacity: 0.8;
+}
+
+/* Items du menu */
+.navMenuOption {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem;
+  color: rgba(var(--nf-text-muted), 1) !important;
+  font-family: var(--nf-font-primary) !important;
+  font-size: 0.92rem !important;
+  font-weight: 400;
+  padding: 0.6rem 1.2rem !important;
+  margin: 0.1rem 0.5rem !important;
+  border-radius: var(--nf-rounding) !important;
+  border-left: 3px solid transparent !important;
+  transition: background var(--nf-transition), color var(--nf-transition), border-color var(--nf-transition) !important;
+}
+
+/* Icônes du menu */
+.navMenuOption .material-icons,
+.navMenuOption .listItemIcon {
+  color: rgb(var(--nf-text-dim)) !important;
+  font-size: 1.1rem !important;
+  transition: color var(--nf-transition) !important;
+  width: 1.2rem;
+  text-align: center;
+}
+
+/* Hover */
+.navMenuOption:hover {
+  background: rgba(var(--nf-primary), 0.1) !important;
+  color: rgb(var(--nf-text)) !important;
+  border-left-color: rgba(var(--nf-primary), 0.5) !important;
+}
+
+.navMenuOption:hover .material-icons,
+.navMenuOption:hover .listItemIcon {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Item actif / sélectionné */
 .navMenuOption-selected {
   background: rgba(var(--nf-primary), 0.15) !important;
+  color: rgb(var(--nf-primary)) !important;
   border-left: 3px solid rgb(var(--nf-primary)) !important;
+  font-weight: 600 !important;
 }
 
-.navMenuOption {
-  color: rgba(var(--nf-text-muted), 1);
-  transition: background var(--nf-transition), color var(--nf-transition);
+.navMenuOption-selected .material-icons,
+.navMenuOption-selected .listItemIcon {
+  color: rgb(var(--nf-primary)) !important;
 }
 
-.navMenuOption:hover {
-  background: rgba(var(--nf-primary), 0.08) !important;
-  color: rgb(var(--nf-text)) !important;
+/* Séparateur entre sections */
+.mainDrawer-scrollContainer hr,
+.mainDrawer-scrollContainer .divider {
+  border-color: rgba(var(--nf-primary), 0.1) !important;
+  margin: 0.4rem 1rem !important;
 }
 
 /* === 6. CARDS & GRID — doc: Image Edge Rounded === */
