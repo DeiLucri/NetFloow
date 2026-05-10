@@ -359,40 +359,37 @@ h3.pageTitleWithDefaultLogo::before {
   opacity: 1;
 }
 
-/* --- Panneau infos Netflix sous l'image ---
-   contain:layout sur .cardBox bloque max-height → on utilise
-   scaleY(0→1) sur le contenu + padding fixe sur .cardFooter     */
+/* --- Panneau infos sous l'image (toujours visible, style Netflix) ---
+   Le panel below via CSS pur nécessite que le footer soit toujours
+   présent — le zoom scale(1.3) crée l'effet de mise en avant        */
 
 .cardFooter {
   background: rgb(var(--nf-bg-elevated)) !important;
   border-radius: 0 0 var(--nf-card-radius) var(--nf-card-radius) !important;
-  padding: 0.4rem 0.5rem 0.5rem !important;
-  overflow: hidden !important;
-  transform-origin: top center;
-  transform: scaleY(0) !important;
-  transition: transform 0.2s ease !important;
-  height: auto !important;
+  padding: 0.35rem 0.6rem 0.5rem !important;
 }
 
-.card:hover .cardFooter,
-.card:focus .cardFooter {
-  transform: scaleY(1) !important;
-}
-
-/* Texte dans le panneau */
+/* Titre principal */
 .cardText {
-  opacity: 0;
-  transition: opacity 0.2s ease 0.05s;
   color: rgb(var(--nf-text)) !important;
-  font-size: 0.75rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.card:hover .cardText,
-.card:focus .cardText {
-  opacity: 1;
+/* Sous-titre (année, type…) */
+.cardText.cardText-secondary {
+  color: rgb(var(--nf-text-muted)) !important;
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+}
+
+/* Legère mise en valeur du panel au hover */
+.card:hover .cardFooter,
+.card:focus .cardFooter {
+  background: rgb(var(--nf-bg-card)) !important;
 }
 
 /* --- Bouton play — rond blanc avec play noir (style Netflix) --- */
