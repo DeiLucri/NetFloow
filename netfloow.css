@@ -144,11 +144,26 @@ h3.pageTitleWithDefaultLogo::before {
   display: none !important;
 }
 
-/* headerRight — extrême droite */
+/* headerRight + icônes — extrême droite */
 .headerRight {
   order: 10 !important;
   margin-left: auto !important;
   color: rgb(var(--nf-text)) !important;
+}
+
+/* Icônes header — reset couleur bleue Jellyfin (.paper-icon-button-light) */
+.headerRight .paper-icon-button-light,
+.headerRight .headerButton,
+.headerRight button,
+.headerRight .material-icons,
+.paper-icon-button-light.headerButton {
+  color: rgb(var(--nf-text)) !important;
+}
+
+.headerRight .paper-icon-button-light:hover,
+.headerRight .headerButton:hover,
+.headerRight button:hover {
+  color: rgb(var(--nf-primary)) !important;
 }
 
 /* Tab buttons — doc: Enlarge Tab Buttons */
@@ -178,25 +193,91 @@ h3.pageTitleWithDefaultLogo::before {
 /* === 5. SIDEBAR — doc: Console Panel Custom Color === */
 /* doc: https://jellyfin.org/docs/general/clients/css-customization#console-panel-custom-color */
 
-.mainDrawer-scrollContainer {
-  background-color: rgb(var(--nf-bg)) !important;
-  border-right: 1px solid rgba(var(--nf-primary), 0.1);
+/* Conteneur principal du drawer */
+.mainDrawer {
+  background: rgb(var(--nf-bg)) !important;
+  border-right: 1px solid rgba(var(--nf-primary), 0.12) !important;
 }
 
-/* Option sélectionnée */
+.mainDrawer-scrollContainer {
+  background: rgb(var(--nf-bg)) !important;
+  padding: 0.5rem 0;
+}
+
+/* Headers de section (Média, Administration, etc.) */
+.mainDrawer-scrollContainer .sectionTitle,
+.mainDrawer-scrollContainer .navSection,
+.mainDrawer-scrollContainer h3,
+.mainDrawer-scrollContainer .sidebarHeader,
+.navMenuOption-header,
+[class*="navSection"] {
+  color: rgb(var(--nf-primary)) !important;
+  font-family: var(--nf-font-primary) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  padding: 1.2rem 1.2rem 0.3rem !important;
+  margin: 0 !important;
+  opacity: 0.8;
+}
+
+/* Items du menu */
+.navMenuOption {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem;
+  color: rgba(var(--nf-text-muted), 1) !important;
+  font-family: var(--nf-font-primary) !important;
+  font-size: 0.92rem !important;
+  font-weight: 400;
+  padding: 0.6rem 1.2rem !important;
+  margin: 0.1rem 0.5rem !important;
+  border-radius: var(--nf-rounding) !important;
+  border-left: 3px solid transparent !important;
+  transition: background var(--nf-transition), color var(--nf-transition), border-color var(--nf-transition) !important;
+}
+
+/* Icônes du menu */
+.navMenuOption .material-icons,
+.navMenuOption .listItemIcon {
+  color: rgb(var(--nf-text-dim)) !important;
+  font-size: 1.1rem !important;
+  transition: color var(--nf-transition) !important;
+  width: 1.2rem;
+  text-align: center;
+}
+
+/* Hover */
+.navMenuOption:hover {
+  background: rgba(var(--nf-primary), 0.1) !important;
+  color: rgb(var(--nf-text)) !important;
+  border-left-color: rgba(var(--nf-primary), 0.5) !important;
+}
+
+.navMenuOption:hover .material-icons,
+.navMenuOption:hover .listItemIcon {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Item actif / sélectionné */
 .navMenuOption-selected {
   background: rgba(var(--nf-primary), 0.15) !important;
+  color: rgb(var(--nf-primary)) !important;
   border-left: 3px solid rgb(var(--nf-primary)) !important;
+  font-weight: 600 !important;
 }
 
-.navMenuOption {
-  color: rgba(var(--nf-text-muted), 1);
-  transition: background var(--nf-transition), color var(--nf-transition);
+.navMenuOption-selected .material-icons,
+.navMenuOption-selected .listItemIcon {
+  color: rgb(var(--nf-primary)) !important;
 }
 
-.navMenuOption:hover {
-  background: rgba(var(--nf-primary), 0.08) !important;
-  color: rgb(var(--nf-text)) !important;
+/* Séparateur entre sections */
+.mainDrawer-scrollContainer hr,
+.mainDrawer-scrollContainer .divider {
+  border-color: rgba(var(--nf-primary), 0.1) !important;
+  margin: 0.4rem 1rem !important;
 }
 
 /* === 6. CARDS & GRID — doc: Image Edge Rounded === */
@@ -309,18 +390,73 @@ h3.pageTitleWithDefaultLogo::before {
   height: 3px !important;
 }
 
-/* Slider position */
-.nowPlayingBarPositionContainer .playbackProgress {
+/* --- Slider MDL (Material Design Lite) utilisé par Jellyfin --- */
+
+/* Partie jouée — rouge (toutes variantes de nommage Jellyfin/MDL) */
+.sliderPlayProgress,
+.mdl-slider__background-lower,
+.nowPlayingBarPositionContainer .playbackProgress,
+[class*="PlayProgress"],
+[class*="playProgress"] {
   background: rgb(var(--nf-primary)) !important;
 }
 
-/* Thumb slider */
-.osdPositionSlider::-webkit-slider-thumb {
+/* Partie bufferisée — gris */
+.sliderBufferedProgress,
+.mdl-slider__background-upper {
+  background: rgba(var(--nf-text), 0.25) !important;
+}
+
+/* Reset couleur bleue native du navigateur sur l'input range */
+.osdPositionSlider,
+.mdl-slider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Piste (partie non lue) */
+.osdPositionSlider::-webkit-slider-runnable-track,
+.mdl-slider::-webkit-slider-runnable-track {
+  background: rgba(var(--nf-text), 0.2) !important;
+  height: 4px;
+  border-radius: 2px;
+}
+
+/* Thumb (le rond) */
+.osdPositionSlider::-webkit-slider-thumb,
+.mdl-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: rgb(var(--nf-primary)) !important;
+  border: 2px solid rgb(var(--nf-primary)) !important;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-top: -5px;
+}
+
+/* Firefox */
+.osdPositionSlider::-moz-range-thumb,
+.mdl-slider::-moz-range-thumb {
+  background: rgb(var(--nf-primary)) !important;
+  border: none !important;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.osdPositionSlider::-moz-range-progress,
+.mdl-slider::-moz-range-progress {
   background: rgb(var(--nf-primary)) !important;
 }
 
-.osdPositionSlider::-webkit-slider-runnable-track {
-  background: rgba(var(--nf-primary), 0.35) !important;
+.osdPositionSlider::-moz-range-track,
+.mdl-slider::-moz-range-track {
+  background: rgba(var(--nf-text), 0.2) !important;
+  height: 4px;
+  border-radius: 2px;
 }
 
 /* === 9. BUTTONS & ACTIONS === */
@@ -355,6 +491,39 @@ h3.pageTitleWithDefaultLogo::before {
 .emby-select-withcolor {
   border-color: rgb(var(--nf-primary)) !important;
   outline: none !important;
+}
+
+/* Menu contextuel (clic sur carte) — actionSheet */
+.actionSheet {
+  background: rgb(var(--nf-bg-elevated)) !important;
+  border: 1px solid rgba(var(--nf-primary), 0.2);
+  border-radius: var(--nf-rounding) !important;
+}
+
+.actionSheetContent .listItem,
+.actionSheet .listItem {
+  color: rgb(var(--nf-text)) !important;
+  transition: background var(--nf-transition), color var(--nf-transition);
+  border-radius: var(--nf-rounding);
+}
+
+.actionSheetContent .listItem:hover,
+.actionSheet .listItem:hover {
+  background: rgba(var(--nf-primary), 0.15) !important;
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Icône + texte passent en rouge au survol */
+.actionSheetContent .listItem:hover .listItemIcon,
+.actionSheetContent .listItem:hover .material-icons,
+.actionSheet .listItem:hover .listItemIcon,
+.actionSheet .listItem:hover .material-icons {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Séparateur entre groupes */
+.actionSheetDivider {
+  border-color: rgba(var(--nf-primary), 0.15) !important;
 }
 
 /* === 10. HOME SECTIONS OVERRIDES === */
@@ -545,3 +714,81 @@ h3.pageTitleWithDefaultLogo::before {
     max-width: 8em;
   }
 }
+
+/* === 16. ACCENT ROUGE GLOBAL === */
+/* Uniformise toutes les couleurs d'accentuation en rouge */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--nf-bg-card));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--nf-primary), 0.6);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--nf-primary));
+}
+
+/* Sélection de texte */
+::selection {
+  background: rgba(var(--nf-primary), 0.4);
+  color: #fff;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid rgb(var(--nf-primary)) !important;
+  outline-offset: 2px;
+}
+
+/* Checkboxes et toggles */
+.emby-checkbox:checked,
+input[type="checkbox"]:checked {
+  accent-color: rgb(var(--nf-primary));
+}
+
+/* Liens */
+a {
+  color: rgba(var(--nf-primary), 0.85);
+  transition: color var(--nf-transition);
+}
+
+a:hover {
+  color: rgb(var(--nf-primary));
+}
+
+/* Étoiles / rating actif */
+.starIcon.starIcon-full,
+.starRating .material-icons {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Titre de page actif / section active */
+.pageTitle,
+.sectionTitle-withUrl:hover {
+  color: rgb(var(--nf-text)) !important;
+}
+
+/* Badges et labels */
+.videoQualityLabel,
+.mediaInfoItem {
+  color: rgb(var(--nf-primary)) !important;
+}
+
+/* Spinner de chargement */
+.mdl-spinner__layer {
+  border-color: rgb(var(--nf-primary)) !important;
+}
+
+.mdl-spinner__layer-1 { border-color: rgb(var(--nf-primary)) !important; }
+.mdl-spinner__layer-2 { border-color: rgb(var(--nf-primary)) !important; }
+.mdl-spinner__layer-3 { border-color: rgb(var(--nf-primary)) !important; }
+.mdl-spinner__layer-4 { border-color: rgb(var(--nf-primary)) !important; }
