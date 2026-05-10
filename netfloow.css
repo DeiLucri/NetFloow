@@ -413,12 +413,11 @@ h3.pageTitleWithDefaultLogo::before {
   background-color: transparent !important;
 }
 
-/* Hover sur bouton overlay → rouge */
+/* Hover sur bouton overlay → agrandissement uniquement */
 .paper-icon-button-light.cardOverlayButton:hover {
-  background: rgb(var(--nf-primary)) !important;
-  border-color: rgb(var(--nf-primary)) !important;
-  color: #fff !important;
-  transform: scale(1.1);
+  background: rgba(var(--nf-bg-card), 0.92) !important;
+  border-color: rgba(var(--nf-text), 0.4) !important;
+  transform: scale(1.25);
 }
 
 /* Bouton "Reprendre" → bordure rouge d'emblée */
